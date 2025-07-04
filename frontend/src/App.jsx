@@ -15,7 +15,7 @@ import SettingsPage from './pages/SettingsPage';
 import HowItWorksPage from './pages/HowItWorksPage';
 import PricingPage from './pages/PricingPage';
 import NotFoundPage from './pages/NotFoundPage';
-
+import FakeChat from './pages/FakeChat';
 // Private Route component
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated, loading } = React.useContext(AuthContext);
@@ -39,7 +39,7 @@ function App() {
               <Route path="/how-it-works" element={<HowItWorksPage />} />
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/settings" element={<SettingsPage />} />
-
+              <Route path="/fake-chat" element={<FakeChat />} />
               {/* Protected Routes */}
               <Route
                 path="/dashboard"

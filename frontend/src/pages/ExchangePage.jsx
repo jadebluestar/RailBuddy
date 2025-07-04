@@ -69,8 +69,8 @@ const ExchangePage = () => {
         name: 'Priya Singh',
         isVerified: true,
         destination: pnrDetails.destination || 'Mumbai', // Assuming PNR has destination
-        currentSeat: 'S5-24',
-        desiredSeat: 'S5-23',
+        currentSeat: 'S5-23',
+        desiredSeat: 'S3-23',
         profilePic: null, // Replace with actual URL
         score: 92
       },
