@@ -128,20 +128,21 @@ const ProfilePage = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">{t('profile')}</h1>
+        <h1 className="text-4xl font-bold text-gray-800 mb-6">{t('Profile')}</h1>
+        <p className="text-gray-600 mb-8">{t('Manage your personal information and preferences.')}</p>
 
         <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">{t('editProfile')}</h2>
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">{t('Edit Profile')}</h2>
           <form onSubmit={handleProfileUpdate}>
             <InputField
-              label={t('name')}
+              label={t('Name')}
               id="name"
               type="text"
               value={profileData.name}
               onChange={(e) => setProfileData({ ...profileData, name: e.target.value })}
             />
             <InputField
-              label={t('email')}
+              label={t('Email')}
               id="email"
               type="email"
               value={profileData.email}
@@ -150,18 +151,18 @@ const ProfilePage = () => {
               className="opacity-70" // Email usually not editable
             />
             <InputField
-              label={t('phone')}
+              label={t('Phone')}
               id="phone"
               type="tel"
               value={profileData.phone}
               onChange={(e) => setProfileData({ ...profileData, phone: e.target.value })}
             />
 
-            <h3 className="text-lg font-semibold text-gray-700 mt-6 mb-3">{t('emergencyContacts')}</h3>
+            <h3 className="text-lg font-semibold text-gray-700 mt-6 mb-3">{t('Emergency Contacts')}</h3>
             {profileData.emergencyContacts.map((contact, index) => (
               <div key={index} className="flex flex-col sm:flex-row gap-4 mb-4 items-end">
                 <InputField
-                  label={t('contactName')}
+                  label={t('Contact Name')}
                   id={`contactName-${index}`}
                   type="text"
                   value={contact.name}
@@ -169,7 +170,7 @@ const ProfilePage = () => {
                   className="flex-grow"
                 />
                 <InputField
-                  label={t('contactNumber')}
+                  label={t('Contact Number')}
                   id={`contactNumber-${index}`}
                   type="tel"
                   value={contact.number}
@@ -179,23 +180,23 @@ const ProfilePage = () => {
               </div>
             ))}
             <Button variant="outline" onClick={handleAddEmergencyContact} type="button" className="mb-6">
-              {t('addEmergencyContact')}
+              {t('Add Emergency Contact')}
             </Button>
 
             {profileMessage && <p className="text-green-600 text-sm mb-4">{profileMessage}</p>}
             {profileError && <p className="text-red-600 text-sm mb-4">{profileError}</p>}
 
             <Button type="submit" className="w-full" disabled={profileLoading}>
-              {profileLoading ? <LoadingSpinner className="w-5 h-5" color="white" /> : t('updateProfile')}
+              {profileLoading ? <LoadingSpinner className="w-5 h-5" color="white" /> : t('Update Profile')}
             </Button>
           </form>
         </div>
 
         <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">{t('updatePassword')}</h2>
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">{t('Update Password')}</h2>
           <form onSubmit={handlePasswordUpdate}>
             <InputField
-              label={t('currentPassword')}
+              label={t('Current Password')}
               id="currentPassword"
               type="password"
               value={currentPassword}
@@ -203,7 +204,7 @@ const ProfilePage = () => {
               placeholder="********"
             />
             <InputField
-              label={t('newPassword')}
+              label={t('New Password')}
               id="newPassword"
               type="password"
               value={newPassword}
@@ -211,7 +212,7 @@ const ProfilePage = () => {
               placeholder="********"
             />
             <InputField
-              label={t('confirmNewPassword')}
+              label={t('Confirm New Password')}
               id="confirmNewPassword"
               type="password"
               value={confirmNewPassword}
@@ -223,7 +224,7 @@ const ProfilePage = () => {
             {passwordError && <p className="text-red-600 text-sm mb-4">{passwordError}</p>}
 
             <Button type="submit" className="w-full" disabled={passwordLoading}>
-              {passwordLoading ? <LoadingSpinner className="w-5 h-5" color="white" /> : t('updatePassword')}
+              {passwordLoading ? <LoadingSpinner className="w-5 h-5" color="white" /> : t('Update Password')}
             </Button>
           </form>
         </div>

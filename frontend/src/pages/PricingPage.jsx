@@ -15,16 +15,14 @@ const PricingPage = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">{t('chooseYourPlan')}</h1>
-        <p className="text-lg text-gray-600 mb-12 text-center max-w-2xl mx-auto">
-          {t('unlockFullPotential')}
-        </p>
+        <h1 className="text-4xl font-bold text-gray-800 mb-6">{t('Pricing')}</h1>
+        <p className="text-gray-600 mb-8">{t('Choose the plan that best fits your travel needs.')}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
           {/* Basic Plan Card */}
           <div className="bg-white rounded-lg shadow-lg p-8 border-2 border-gray-200 text-center flex flex-col">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">{t('basic')}</h2>
-            <p className="text-gray-600 text-sm mb-6">{t('perfectForCasualUsers')}</p>
+            <h2 className="text-2xl font-semibold text-gray-700 mb-4">{t('Free Plan')}</h2>
+            <p className="mb-6">{t('Enjoy basic seat exchange features at no cost.')}</p>
             <div className="text-5xl font-extrabold text-primary mb-6">
               ₹0<span className="text-lg text-gray-500">/{t('perMonth')}</span>
             </div>
@@ -50,8 +48,8 @@ const PricingPage = () => {
           {/* Premium Plan Card */}
           <div className="bg-primary text-white rounded-lg shadow-xl p-8 border-2 border-primary text-center flex flex-col transform scale-105 z-10">
             <p className="text-sm font-semibold mb-2 bg-white text-primary px-3 py-1 rounded-full inline-block self-center">{t('mostPopular')}</p>
-            <h2 className="text-2xl font-bold mb-4">{t('premium')}</h2>
-            <p className="text-blue-100 text-sm mb-6">{t('bestForFrequentTravelers')}</p>
+            <h2 className="text-2xl font-semibold text-gray-700 mb-4">{t('Premium Plan')}</h2>
+            <p className="mb-6">{t('Unlock premium features for a seamless experience.')}</p>
             <div className="text-5xl font-extrabold mb-6">
               ₹99<span className="text-lg text-blue-100">/{t('perMonth')}</span>
             </div>
