@@ -12,13 +12,13 @@ const KarmaPointsDisplay = ({ onRedeemClick }) => {
 
   return (
     <div className="bg-gradient-to-r from-secondary to-green-500 text-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center">
-      <h3 className="text-xl font-bold mb-2">{t('yourKarmaPoints')}</h3>
+      <h3 className="text-xl font-bold mb-2">{t('Your Karma Points')}</h3>
       <p className="text-5xl font-extrabold mb-4">{karmaPoints}</p>
       <p className="text-green-100 text-sm mb-4">
-        {t('karmaDescription')}
+        {t('Karma Description')}
       </p>
       <Button variant="ghost" onClick={onRedeemClick} className="!bg-white !text-secondary hover:!bg-gray-100">
-        {t('redeemKarma')}
+        {t('Redeem Karma')}
       </Button>
     </div>
   );

@@ -89,22 +89,22 @@ const DashboardPage = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">{t('welcome')}, {user.email || user.name}!</h1>
-        <p className="text-gray-600 mb-8">{t('welcomeMessage')}</p>
+        <h1 className="text-3xl font-bold text-gray-800 mb-8">{t('Welcome')}, {user.email || user.name}!</h1>
+        <p className="text-gray-600 mb-8">{t('Welcome to your dashboard. Here you can manage your seat exchanges, view your karma points, and track your activity.')}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           <DashboardCard
-            title={t('linkedPnrs')}
+            title={t('Linked PNRs')}
             value={user.linkedPnrs?.length || 0}
             icon={<svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 7a2 2 0 012 2v5a2 2 0 01-2 2h-5a2 2 0 01-2-2V9a2 2 0 012-2h5z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11v2a2 2 0 01-2 2h-2"></path></svg>}
-            description={t('totalPnrsLinked')}
+            description={t('Total PNRs Linked')}
           />
           <KarmaPointsDisplay onRedeemClick={() => setIsRedeemModalOpen(true)} />
           <DashboardCard
-            title={t('activeMatches')}
+            title={t('Active Matches')}
             value={activeRequests.filter(r => r.status === 'accepted').length}
             icon={<svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>}
-            description={t('currentConfirmedExchanges')}
+            description={t('Current Confirmed Exchanges')}
           />
         </div>
 
@@ -113,11 +113,11 @@ const DashboardPage = () => {
             requests={activeRequests.filter(req => req.status !== 'completed' && req.status !== 'declined')}
             onAccept={handleRequestAction}
             onDecline={handleRequestAction}
-            type="active"
+            type="Active Requests"
           />
           <ExchangeRequestList
             requests={pastRequests}
-            type="history"
+            type="Exchange History"
           />
         </div>
       </div>
@@ -125,11 +125,11 @@ const DashboardPage = () => {
       <Modal
         isOpen={isRedeemModalOpen}
         onClose={() => {setIsRedeemModalOpen(false); setRedeemMessage('');}}
-        title={t('redeemKarmaPoints')}
+        title={t('Redeem Karma Points')}
       >
-        <p className="mb-4">{t('redeemKarmaDesc')}</p>
-        <p className="font-bold text-lg mb-4">{t('yourCurrentKarma')}: {karmaPoints}</p>
-        <p className="font-bold text-lg text-primary mb-6">{t('costForExtraExchange')}: 50 {t('karmaPoints')}</p>
+        <p className="mb-4">{t('You can redeem your karma points for additional seat exchanges or other benefits.')}</p>
+        <p className="font-bold text-lg mb-4">{t('Your Karma Points')}: {karmaPoints}</p>
+        <p className="font-bold text-lg text-primary mb-6">{t('Cost for Extra Exchange')}: 50 {t('Karma Points')}</p>
 
         {redeemMessage && (
           <p className={`mb-4 ${redeemMessage.includes('successful') ? 'text-green-600' : 'text-red-600'}`}>
@@ -139,10 +139,10 @@ const DashboardPage = () => {
 
         <div className="flex justify-end space-x-3">
           <Button variant="outline" onClick={() => setIsRedeemModalOpen(false)} disabled={redeemLoading}>
-            {t('cancel')}
+            {t('Cancel')}
           </Button>
           <Button onClick={handleRedeemKarma} disabled={redeemLoading || karmaPoints < 50}>
-            {redeemLoading ? <LoadingSpinner className="w-4 h-4" color="white" /> : t('redeem')}
+            {redeemLoading ? <LoadingSpinner className="w-4 h-4" color="white" /> : t('Redeem')}
           </Button>
         </div>
       </Modal>

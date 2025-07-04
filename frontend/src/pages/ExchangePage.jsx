@@ -138,14 +138,15 @@ const ExchangePage = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">{t('exchangeSeats')}</h1>
+        <h1 className="text-4xl font-bold text-gray-800 mb-6">{t('Exchange Seats')}</h1>
+        <p className="text-gray-600 mb-8">{t('Find and request seat exchanges with other passengers for a more comfortable journey.')}</p>
 
         <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">{t('securelyLinkPnr')}</h2>
-          <p className="text-gray-600 mb-4">{t('linkPnrDescription')}</p>
+          <h2 className="text-2xl font-semibold text-gray-700 mb-4">{t('Securely Link PNR')}</h2>
+          <p className="text-gray-600 mb-4">{t('Link your PNR number to find potential seat exchanges with other passengers.')}</p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 items-end">
             <InputField
-              label={t('pnrNumber')}
+              label={t('PNR Number')}
               id="pnr"
               type="text"
               value={pnrNumber}
@@ -155,25 +156,25 @@ const ExchangePage = () => {
               error={pnrError}
             />
             <Button onClick={simulatePnrVerification} disabled={pnrLoading}>
-              {pnrLoading ? <LoadingSpinner className="w-4 h-4" color="white" /> : t('verifyPnr')}
+              {pnrLoading ? <LoadingSpinner className="w-4 h-4" color="white" /> : t('Verify PNR')}
             </Button>
           </div>
         </div>
 
         {pnrDetails && (
           <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">{t('currentTravelDetails')}</h2>
+            <h2 className="text-2xl font-semibold text-gray-700 mb-4">{t('Current Travel Details')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
-              <p><strong>{t('passengerName')}:</strong> {pnrDetails.passengerName}</p>
-              <p><strong>{t('trainNumber')}:</strong> {pnrDetails.trainNumber}</p>
-              <p><strong>{t('dateOfJourney')}:</strong> {pnrDetails.dateOfJourney}</p>
-              <p><strong>{t('currentSeat')}:</strong> {pnrDetails.currentSeat} ({pnrDetails.coach})</p>
+              <p><strong>{t('Passenger Name')}:</strong> {pnrDetails.passengerName}</p>
+              <p><strong>{t('Train Number')}:</strong> {pnrDetails.trainNumber}</p>
+              <p><strong>{t('Date of Journey')}:</strong> {pnrDetails.dateOfJourney}</p>
+              <p><strong>{t('Current Seat')}:</strong> {pnrDetails.currentSeat} ({pnrDetails.coach})</p>
             </div>
 
-            <h2 className="text-xl font-semibold text-gray-800 mt-8 mb-4">{t('desiredExchangeDetails')}</h2>
+            <h2 className="text-2xl font-semibold text-gray-700 mt-8 mb-4">{t('Desired Exchange Details')}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <InputField
-                label={t('specificCoach')}
+                label={t('Specific Coach')}
                 id="desiredCoach"
                 type="text"
                 value={desiredCoach}
@@ -181,7 +182,7 @@ const ExchangePage = () => {
                 placeholder="e.g., S5, B1 (optional)"
               />
               <InputField
-                label={t('specificSeat')}
+                label={t('Specific Seat')}
                 id="desiredSeat"
                 type="text"
                 value={desiredSeat}
@@ -190,7 +191,7 @@ const ExchangePage = () => {
               />
             </div>
             <Button onClick={simulateSearchMatches} className="w-full mt-6" disabled={matchesLoading}>
-              {matchesLoading ? <LoadingSpinner className="w-5 h-5" color="white" /> : t('searchMatches')}
+              {matchesLoading ? <LoadingSpinner className="w-5 h-5" color="white" /> : t('Search for Exchanges')}
             </Button>
           </div>
         )}
@@ -198,7 +199,7 @@ const ExchangePage = () => {
         {matchesError && <p className="text-red-500 text-center mb-4">{matchesError}</p>}
         {exchangeRequestMessage && <p className={`text-center mb-4 ${exchangeRequestMessage.includes('success') ? 'text-green-600' : 'text-red-600'}`}>{exchangeRequestMessage}</p>}
 
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">{t('aiSuggestedMatches')}</h2>
+        <h2 className="text-2xl font-bold text-gray-800 mb-6">{t('AI Suggested Matches')}</h2>
         <MatchResults
           matches={matches}
           isLoading={matchesLoading}

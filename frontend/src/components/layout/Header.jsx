@@ -35,21 +35,21 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
-          <Link to="/how-it-works" className="text-gray-600 hover:text-primary transition-colors">{t('howItWorks')}</Link>
-          <Link to="/exchange" className="text-gray-600 hover:text-primary transition-colors">{t('exchangeSeats')}</Link>
-          <Link to="/chat" className="text-gray-600 hover:text-primary transition-colors">{t('chat')}</Link>
-          <Link to="/pricing" className="text-gray-600 hover:text-primary transition-colors">{t('pricing')}</Link>
+          <Link to="/how-it-works" className="text-gray-600 hover:text-primary transition-colors">{t('How It Works')}</Link>
+          <Link to="/exchange" className="text-gray-600 hover:text-primary transition-colors">{t('Exchange Seats')}</Link>
+          <Link to="/chat" className="text-gray-600 hover:text-primary transition-colors">{t('Chat')}</Link>
+          <Link to="/pricing" className="text-gray-600 hover:text-primary transition-colors">{t('Pricing')}</Link>
           {user ? (
             <>
-              <Link to="/dashboard" className="text-gray-600 hover:text-primary transition-colors">{t('dashboard')}</Link>
-              <Link to="/profile" className="text-gray-600 hover:text-primary transition-colors">{t('profile')}</Link>
+              <Link to="/dashboard" className="text-gray-600 hover:text-primary transition-colors">{t('Dashboard')}</Link>
+              <Link to="/profile" className="text-gray-600 hover:text-primary transition-colors">{t('Profile')}</Link>
               <button onClick={handleLogout} className="text-primary hover:text-blue-700 transition-colors font-medium">
-                {t('logout')}
+                {t('Log Out')}
               </button>
             </>
           ) : (
             <Link to="/login" className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-              {t('loginRegister')}
+              {t('Login / Register')}
             </Link>
           )}
           <LanguageSelector />
@@ -59,21 +59,21 @@ const Header = () => {
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div className="md:hidden fixed inset-0 bg-white z-40 p-4 pt-20 flex flex-col items-center space-y-4 shadow-lg animate-fade-in-down">
-          <Link to="/how-it-works" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-800 text-lg hover:text-primary transition-colors">{t('howItWorks')}</Link>
-          <Link to="/exchange" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-800 text-lg hover:text-primary transition-colors">{t('exchangeSeats')}</Link>
-          <Link to="/chat" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-800 text-lg hover:text-primary transition-colors">{t('chat')}</Link>
-          <Link to="/pricing" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-800 text-lg hover:text-primary transition-colors">{t('pricing')}</Link>
+          <Link to="/how-it-works" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-800 text-lg hover:text-primary transition-colors">{t('How It Works')}</Link>
+          <Link to="/exchange" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-800 text-lg hover:text-primary transition-colors">{t('Exchange Seats')}</Link>
+          <Link to="/chat" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-800 text-lg hover:text-primary transition-colors">{t('Chat')}</Link>
+          <Link to="/pricing" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-800 text-lg hover:text-primary transition-colors">{t('Pricing')}</Link>
           {user ? (
             <>
-              <Link to="/dashboard" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-800 text-lg hover:text-primary transition-colors">{t('dashboard')}</Link>
-              <Link to="/profile" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-800 text-lg hover:text-primary transition-colors">{t('profile')}</Link>
+              <Link to="/dashboard" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-800 text-lg hover:text-primary transition-colors">{t('Dashboard')}</Link>
+              <Link to="/profile" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-800 text-lg hover:text-primary transition-colors">{t('Profile')}</Link>
               <button onClick={() => { handleLogout(); setIsMobileMenuOpen(false); }} className="text-primary text-lg hover:text-blue-700 transition-colors font-medium">
-                {t('logout')}
+                {t('Log Out')}
               </button>
             </>
           ) : (
             <Link to="/login" onClick={() => setIsMobileMenuOpen(false)} className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors w-full text-center">
-              {t('loginRegister')}
+              {t('Login / Register')}
             </Link>
           )}
           <LanguageSelector />
