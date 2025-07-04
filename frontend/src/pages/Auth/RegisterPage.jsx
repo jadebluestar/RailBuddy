@@ -45,11 +45,21 @@ const RegisterPage = () => {
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-120px)] bg-gray-50 p-4">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">{t('register')}</h2>
+        <h1 className="text-4xl font-bold text-gray-800 mb-6">{t('Register')}</h1>
+        <p className="text-gray-600 mb-8">{t('Create a new account to start exchanging seats.')}</p>
 
         <form onSubmit={handleSubmit}>
           <InputField
-            label={t('email')}
+            label={t('Name')}
+            id="name"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="John Doe"
+            error={formError || authError ? (email ? '' : formError) : ''}
+          />
+          <InputField
+            label={t('Email')}
             id="email"
             type="email"
             value={email}
@@ -58,7 +68,7 @@ const RegisterPage = () => {
             error={formError || authError ? (email ? '' : formError) : ''}
           />
           <InputField
-            label={t('password')}
+            label={t('Password')}
             id="password"
             type="password"
             value={password}
@@ -67,7 +77,7 @@ const RegisterPage = () => {
             error={formError || authError ? (password ? '' : formError) : ''}
           />
           <InputField
-            label={t('confirmPassword')}
+            label={t('Confirm Password')}
             id="confirmPassword"
             type="password"
             value={confirmPassword}
@@ -79,13 +89,14 @@ const RegisterPage = () => {
           {formError && <p className="text-red-500 text-sm mb-4">{formError}</p>}
           {authError && <p className="text-red-500 text-sm mb-4">{authError}</p>}
 
-          <Button type="submit" className="w-full mt-4" disabled={loading}>
-            {loading ? <LoadingSpinner className="w-5 h-5" color="white" /> : t('register')}
+          <Button type="submit" disabled={loading}>
+            {loading ? <LoadingSpinner className="w-4 h-4" color="white" /> : t('Register')}
           </Button>
         </form>
 
-        <p className="mt-6 text-center text-gray-600">
-          {t('alreadyHaveAccount')} <Link to="/login" className="text-primary hover:underline">{t('login')}</Link>
+        <p className="mt-4 text-center text-gray-600">
+          {t('Already have an account?')}{' '}
+          <a href="/auth/login" className="text-primary font-semibold hover:underline">{t('Login Now')}</a>
         </p>
       </div>
     </div>

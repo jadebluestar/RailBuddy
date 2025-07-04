@@ -15,7 +15,10 @@ const ChatPage = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6">{t('chat')}</h1>
+        <h1 className="text-4xl font-bold text-gray-800 mb-6">{t('Chat')}</h1>
+        <p className="text-gray-600 mb-8">
+          {t('Communicate with your matches and coordinate seat exchanges.')}
+        </p>
         <ChatWindow
           partnerId={partnerId || defaultPartnerId}
           partnerName={partnerId ? `User ${partnerId}` : defaultPartnerName}

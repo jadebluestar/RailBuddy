@@ -34,11 +34,12 @@ const LoginPage = () => {
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-120px)] bg-gray-50 p-4">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">{t('login')}</h2>
+        <h1 className="text-4xl font-bold text-gray-800 mb-6">{t('Login')}</h1>
+        <p className="text-gray-600 mb-8">{t('Sign in to your account to access all features.')}</p>
 
         <form onSubmit={handleSubmit}>
           <InputField
-            label={t('email')}
+            label={t('Email')}
             id="email"
             type="email"
             value={email}
@@ -47,7 +48,7 @@ const LoginPage = () => {
             error={formError || authError ? (email ? '' : formError) : ''}
           />
           <InputField
-            label={t('password')}
+            label={t('Password')}
             id="password"
             type="password"
             value={password}
@@ -59,16 +60,14 @@ const LoginPage = () => {
           {formError && <p className="text-red-500 text-sm mb-4">{formError}</p>}
           {authError && <p className="text-red-500 text-sm mb-4">{authError}</p>}
 
-          <Button type="submit" className="w-full mt-4" disabled={loading}>
-            {loading ? <LoadingSpinner className="w-5 h-5" color="white" /> : t('login')}
+          <Button type="submit" disabled={loading}>
+            {loading ? <LoadingSpinner className="w-4 h-4" color="white" /> : t('Login')}
           </Button>
         </form>
 
-        <p className="mt-6 text-center text-gray-600">
-          {t('forgotPassword')} <Link to="/forgot-password" className="text-primary hover:underline">{t('resetPassword')}</Link>
-        </p>
-        <p className="mt-2 text-center text-gray-600">
-          {t('noAccount')} <Link to="/register" className="text-primary hover:underline">{t('register')}</Link>
+        <p className="mt-4 text-center text-gray-600">
+          {t('Do not have an account?')}{' '}
+          <a href="/auth/register" className="text-primary font-semibold hover:underline">{t('Register Now')}</a>
         </p>
       </div>
     </div>
