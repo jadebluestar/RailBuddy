@@ -1,37 +1,35 @@
-import React, { useState, useEffect } from 'react';
+// src/pages/ExchangePage.jsx
+import React, { useState } from 'react';
 import Layout from '../components/layout/Layout';
+import Header from '../components/layout/Header';
 import InputField from '../components/common/InputField';
 import Button from '../components/common/Button';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import MatchResults from '../components/matching/MatchResults';
+import GPSEmailIntegration from '../components/common/GPSEmailIntegration'; // ✅ Correct path!
 import { useAuth } from '../hooks/useAuth';
-import { useTranslation } from 'react-i18next';
-// import { verifyPnr, createExchangeRequest, getMatches } from '../services/exchangeService'; // For real data
-
-const ExchangePage = () => {
-  const { user, isAuthenticated } = useAuth();
-  const { t } = useTranslation();
+import { TranslatedText } from "../components/multi-language/TranslatedText";
+export default function ExchangePage() {
+  const { isAuthenticated } = useAuth();
 
   const [pnrNumber, setPnrNumber] = useState('');
-  const [pnrDetails, setPnrDetails] = useState(null); // Stores fetched PNR data
+  const [pnrDetails, setPnrDetails] = useState(null);
   const [pnrLoading, setPnrLoading] = useState(false);
   const [pnrError, setPnrError] = useState('');
 
   const [desiredCoach, setDesiredCoach] = useState('');
   const [desiredSeat, setDesiredSeat] = useState('');
+
   const [matches, setMatches] = useState([]);
   const [matchesLoading, setMatchesLoading] = useState(false);
   const [matchesError, setMatchesError] = useState('');
 
-  const [exchangeRequestLoading, setExchangeRequestLoading] = useState(false);
   const [exchangeRequestMessage, setExchangeRequestMessage] = useState('');
 
-  // For hackathon, simulate PNR linking and match fetching
   const simulatePnrVerification = async () => {
     setPnrLoading(true);
     setPnrError('');
-    // In a real app: await verifyPnr(pnrNumber);
-    await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
     if (pnrNumber === '1234567890') {
       setPnrDetails({
@@ -42,174 +40,143 @@ const ExchangePage = () => {
         coach: 'S5',
         berth: 'Lower'
       });
-      setPnrError('');
-      alert(t('pnrVerificationComplete'));
     } else {
       setPnrDetails(null);
-      setPnrError(t('pnrVerificationFailed'));
+      setPnrError('PNR verification failed.');
     }
     setPnrLoading(false);
   };
 
   const simulateSearchMatches = async () => {
     if (!pnrDetails) {
-      setMatchesError(t('pleaseVerifyPnrFirst'));
+      setMatchesError('Please verify your PNR first.');
       return;
     }
     setMatchesLoading(true);
     setMatchesError('');
-    setMatches([]);
-    // In a real app: const data = await getMatches({ pnrDetails, desiredCoach, desiredSeat });
-    await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-    // Simulate AI matches based on PNR data
-    const simulatedMatches = [
+    setMatches([
       {
         id: 'match1',
         name: 'Priya Singh',
-        isVerified: true,
-        destination: pnrDetails.destination || 'Mumbai', // Assuming PNR has destination
         currentSeat: 'S5-23',
         desiredSeat: 'S3-23',
-        profilePic: null, // Replace with actual URL
-        score: 92
+        score: 92,
       },
-      {
-        id: 'match2',
-        name: 'Arjun Reddy',
-        isVerified: false,
-        destination: pnrDetails.destination || 'Mumbai',
-        currentSeat: 'B3-15',
-        desiredSeat: 'S5-23',
-        profilePic: null,
-        score: 78
-      },
-      {
-        id: 'match3',
-        name: 'Sneha Kumari',
-        isVerified: true,
-        destination: 'Delhi',
-        currentSeat: 'S5-22',
-        desiredSeat: 'S5-23',
-        profilePic: null,
-        score: 85
-      },
-    ];
-    setMatches(simulatedMatches);
+    ]);
     setMatchesLoading(false);
   };
 
   const handleInitiateChat = (matchId) => {
-    // Navigate to chat page with partner ID
-    const matchedUser = matches.find(m => m.id === matchId);
-    if (matchedUser) {
-      alert(`${t('initiatingChatWith')} ${matchedUser.name}`);
-      // navigate(`/chat/${matchId}`); // Uncomment and use useNavigate hook
-    }
+    alert(`Initiating chat with ${matchId}`);
   };
 
   const handleSendExchangeRequest = async (matchId) => {
-    setExchangeRequestLoading(true);
     setExchangeRequestMessage('');
-    // In a real app:
-    // try {
-    //   await createExchangeRequest(pnrDetails, desiredCoach, desiredSeat, matchId);
-    //   setExchangeRequestMessage(t('exchangeRequestSent'));
-    // } catch (err) {
-    //   setExchangeRequestMessage(t('exchangeRequestFailed'));
-    // }
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
-    const matchedUser = matches.find(m => m.id === matchId);
-    if (matchedUser) {
-      setExchangeRequestMessage(`${t('exchangeRequestSentTo')} ${matchedUser.name}!`);
-      // Simulate adding karma for initiating an exchange? (optional)
-      // addKarma(5);
-    } else {
-      setExchangeRequestMessage(t('exchangeRequestFailed'));
-    }
-
-    setExchangeRequestLoading(false);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setExchangeRequestMessage(`Exchange request sent to ${matchId}!`);
   };
 
   if (!isAuthenticated) {
-    return <Layout><div className="container mx-auto p-4 text-center text-red-600">{t('pleaseLoginToExchangeSeats')}</div></Layout>;
+    return (
+      <Layout>
+        <div className="text-center text-red-600 p-4">
+          <TranslatedText>Please login to exchange seats.</TranslatedText>
+        </div>
+      </Layout>
+    );
   }
 
   return (
-    <Layout>
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-gray-800 mb-6">{t('Exchange Seats')}</h1>
-        <p className="text-gray-600 mb-8">{t('Find and request seat exchanges with other passengers for a more comfortable journey.')}</p>
+    <>
+      <Header />
+      <Layout>
+        <div className="max-w-4xl mx-auto p-6 space-y-6">
+          <h1 className="text-2xl font-bold">
+            <TranslatedText>Find Your Seat Exchange Partner</TranslatedText>
+          </h1>
 
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-2xl font-semibold text-gray-700 mb-4">{t('Securely Link PNR')}</h2>
-          <p className="text-gray-600 mb-4">{t('Link your PNR number to find potential seat exchanges with other passengers.')}</p>
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 items-end">
+          <p className="text-gray-600">
+            <TranslatedText>
+              Link your PNR and share your location to safely meet your exchange partner.
+            </TranslatedText>
+          </p>
+
+          <div className="bg-white rounded-lg shadow-md p-6 space-y-4">
+            <h2 className="text-xl font-semibold">
+              <TranslatedText>Securely Link PNR</TranslatedText>
+            </h2>
             <InputField
-              label={t('PNR Number')}
-              id="pnr"
-              type="text"
+              label="PNR Number"
               value={pnrNumber}
               onChange={(e) => setPnrNumber(e.target.value)}
               placeholder="e.g., 1234567890"
-              className="flex-grow"
               error={pnrError}
             />
             <Button onClick={simulatePnrVerification} disabled={pnrLoading}>
-              {pnrLoading ? <LoadingSpinner className="w-4 h-4" color="white" /> : t('Verify PNR')}
+              {pnrLoading ? (
+                <LoadingSpinner className="w-4 h-4" />
+              ) : (
+                <TranslatedText>Verify PNR</TranslatedText>
+              )}
             </Button>
+
+            {pnrDetails && (
+              <>
+                <div className="mt-4">
+                  <p><strong>Passenger:</strong> {pnrDetails.passengerName}</p>
+                  <p><strong>Train:</strong> {pnrDetails.trainNumber}</p>
+                  <p><strong>Seat:</strong> {pnrDetails.currentSeat}</p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                  <InputField
+                    label="Desired Coach"
+                    value={desiredCoach}
+                    onChange={(e) => setDesiredCoach(e.target.value)}
+                  />
+                  <InputField
+                    label="Desired Seat"
+                    value={desiredSeat}
+                    onChange={(e) => setDesiredSeat(e.target.value)}
+                  />
+                </div>
+                <Button
+                  onClick={simulateSearchMatches}
+                  disabled={matchesLoading}
+                  className="w-full mt-4"
+                >
+                  {matchesLoading ? (
+                    <LoadingSpinner className="w-4 h-4" />
+                  ) : (
+                    <TranslatedText>Search for Matches</TranslatedText>
+                  )}
+                </Button>
+              </>
+            )}
           </div>
+
+          {exchangeRequestMessage && (
+            <p className="text-green-600">{exchangeRequestMessage}</p>
+          )}
+
+          <MatchResults
+            matches={matches}
+            isLoading={matchesLoading}
+            error={matchesError ? { message: matchesError } : null}
+            onInitiateChat={handleInitiateChat}
+            onSendExchangeRequest={handleSendExchangeRequest}
+          />
+
+          {matches.length > 0 && (
+            <GPSEmailIntegration
+              partnerId={matches[0].id}
+              partnerName={matches[0].name || 'Partner'}
+            />
+          )}
         </div>
-
-        {pnrDetails && (
-          <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 className="text-2xl font-semibold text-gray-700 mb-4">{t('Current Travel Details')}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
-              <p><strong>{t('Passenger Name')}:</strong> {pnrDetails.passengerName}</p>
-              <p><strong>{t('Train Number')}:</strong> {pnrDetails.trainNumber}</p>
-              <p><strong>{t('Date of Journey')}:</strong> {pnrDetails.dateOfJourney}</p>
-              <p><strong>{t('Current Seat')}:</strong> {pnrDetails.currentSeat} ({pnrDetails.coach})</p>
-            </div>
-
-            <h2 className="text-2xl font-semibold text-gray-700 mt-8 mb-4">{t('Desired Exchange Details')}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <InputField
-                label={t('Specific Coach')}
-                id="desiredCoach"
-                type="text"
-                value={desiredCoach}
-                onChange={(e) => setDesiredCoach(e.target.value)}
-                placeholder="e.g., S5, B1 (optional)"
-              />
-              <InputField
-                label={t('Specific Seat')}
-                id="desiredSeat"
-                type="text"
-                value={desiredSeat}
-                onChange={(e) => setDesiredSeat(e.target.value)}
-                placeholder="e.g., 24, 57 (optional)"
-              />
-            </div>
-            <Button onClick={simulateSearchMatches} className="w-full mt-6" disabled={matchesLoading}>
-              {matchesLoading ? <LoadingSpinner className="w-5 h-5" color="white" /> : t('Search for Exchanges')}
-            </Button>
-          </div>
-        )}
-
-        {matchesError && <p className="text-red-500 text-center mb-4">{matchesError}</p>}
-        {exchangeRequestMessage && <p className={`text-center mb-4 ${exchangeRequestMessage.includes('success') ? 'text-green-600' : 'text-red-600'}`}>{exchangeRequestMessage}</p>}
-
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">{t('AI Suggested Matches')}</h2>
-        <MatchResults
-          matches={matches}
-          isLoading={matchesLoading}
-          error={matchesError ? { message: matchesError } : null}
-          onInitiateChat={handleInitiateChat}
-          onSendExchangeRequest={handleSendExchangeRequest}
-        />
-      </div>
-    </Layout>
+      </Layout>
+    </>
   );
-};
-
-export default ExchangePage;
+}

@@ -6,7 +6,6 @@ export default function MatchResults({
   matches = [],      // ✅ read from props, not localStorage!
   isLoading,
   error,
-  onInitiateChat,
   onSendExchangeRequest
 }) {
   if (isLoading) {
@@ -42,7 +41,6 @@ export default function MatchResults({
         <MatchCard
           key={match.id}
           match={match}
-          onInitiateChat={() => onInitiateChat(match.id)}
           onSendExchangeRequest={() => onSendExchangeRequest(match.id)}
         />
       ))}

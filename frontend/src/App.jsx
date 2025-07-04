@@ -1,6 +1,7 @@
+ // src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider, AuthContext } from './contexts/AuthContext'; // Import AuthContext
+import { AuthProvider, AuthContext } from './contexts/AuthContext';
 import { KarmaProvider } from './contexts/KarmaContext';
 import { LanguageProvider } from './contexts/LanguageContext';
 
@@ -16,14 +17,14 @@ import HowItWorksPage from './pages/HowItWorksPage';
 import PricingPage from './pages/PricingPage';
 import NotFoundPage from './pages/NotFoundPage';
 import FakeChat from './pages/FakeChat';
-// Private Route component
+
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated, loading } = React.useContext(AuthContext);
-  
+
   if (loading) {
     return <div className="text-center py-20">Loading application...</div>;
   }
-  
+
   return isAuthenticated ? children : <LoginPage />;
 };
 
@@ -40,7 +41,7 @@ function App() {
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="/fake-chat" element={<FakeChat />} />
-              {/* Protected Routes */}
+
               <Route
                 path="/dashboard"
                 element={
@@ -73,7 +74,6 @@ function App() {
                   </PrivateRoute>
                 }
               />
-
               <Route path="/" element={<HowItWorksPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
