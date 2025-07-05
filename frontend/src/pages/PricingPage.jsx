@@ -29,15 +29,15 @@ const PricingPage = () => {
             <ul className="text-left text-gray-700 space-y-3 flex-grow">
               <li className="flex items-center">
                 <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                {t('basicBenefit1')}
+                {t('3 exchange requests/month')}
               </li>
               <li className="flex items-center">
                 <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                {t('basicBenefit2')}
+                {t('Set Preferences')}
               </li>
               <li className="flex items-center">
                 <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                {t('basicBenefit3')}
+                {t('Priority Matching')}
               </li>
             </ul>
             <Button onClick={() => handleSubscribe('Basic')} variant="outline" className="mt-8">
@@ -56,15 +56,15 @@ const PricingPage = () => {
             <ul className="text-left space-y-3 flex-grow">
               <li className="flex items-center">
                 <svg className="w-5 h-5 text-green-300 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                {t('premiumBenefit1')}
+                {t('Unlimited Exchanges')}
               </li>
               <li className="flex items-center">
                 <svg className="w-5 h-5 text-green-300 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                {t('premiumBenefit2')}
+                {t('Priority Matching + Advanced Fliters')}
               </li>
               <li className="flex items-center">
                 <svg className="w-5 h-5 text-green-300 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                {t('premiumBenefit3')}
+                {t('Advanced Beta Features')}
               </li>
               <li className="flex items-center">
                 <svg className="w-5 h-5 text-green-300 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
