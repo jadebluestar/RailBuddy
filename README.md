@@ -185,18 +185,10 @@ Once both the backend and frontend servers are running, the application should b
   * Enhanced AI explanations for match decisions.
   * Dedicated features for railway staff/officials.
 
-## 14\. Contributing
+## 14\. Contact
 
-We welcome contributions to RailBuddy\! Please refer to our `CONTRIBUTING.md` for guidelines.
-
-## 15\. License
-
-This project is licensed under the \[Your Chosen License] License - see the `LICENSE.md` file for details.
-
-## 16\. Contact
-
-  * **Team Name:** \ O(me)
-  * **Team Leader:** \Fiona 
-  * **Email:** \fionadsouza1337@gmail.com
+  * **Team Name:**  O(me)
+  * **Team Leader:** Fiona 
+  * **Email:** fionadsouza1337@gmail.com
 
 
